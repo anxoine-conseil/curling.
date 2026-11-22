@@ -1,0 +1,210 @@
+/* ===================== Thème « Néon » : nuit, verre et lumière ===================== */
+:root{
+  color-scheme:dark;
+  --bg0:#0c1a2e;--bg1:#16294a;--bg2:#1c3357;
+  --glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.09);--edge:rgba(255,255,255,.12);--edge2:rgba(255,255,255,.22);
+  --txt:#ffffff;--ink:#ffffff;--soft:#cddbe9;--line:rgba(255,255,255,.12);
+  --neon:#5fd4ff;--neon2:#2f8fdc;--red:#ff3d57;--red2:#d62839;--red3:#9e1027;--blue:#2f8fdc;--leaf:#5fd4ff;--sun:#5fd4ff;--coral:#ff3d57;--card:rgba(255,255,255,.055);
+  --gloss:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.06) 48%,rgba(255,255,255,0) 52%);
+}
+html{background:var(--bg0)}
+body{color:var(--txt);background:
+  radial-gradient(900px 600px at 92% -8%,rgba(214,40,57,.30),transparent 62%),
+  radial-gradient(800px 700px at -12% 18%,rgba(70,160,235,.38),transparent 60%),
+  radial-gradient(700px 500px at 50% 115%,rgba(95,212,255,.14),transparent 60%),
+  linear-gradient(180deg,var(--bg1),var(--bg0));background-attachment:fixed}
+body::before{right:auto;top:0;left:0;width:100%;height:100%;border-radius:0;opacity:1;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.2px);background-size:26px 26px;
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 75%);mask-image:linear-gradient(180deg,#000,transparent 75%)}
+::selection{background:rgba(95,212,255,.35)}
+
+/* titres et textes */
+h1,h2,h3,.top h1{color:#fff}
+h2{font-weight:800;letter-spacing:-.8px}
+.soft,.hero .tag{color:var(--soft)}
+.hero .word{color:#fff;background:linear-gradient(180deg,#fff 30%,#a9c8e6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-bottom:.1em;filter:drop-shadow(0 0 28px rgba(95,212,255,.25))}
+.hero img,.brand img,.miniLogo{content:url(logo-neon.svg);filter:drop-shadow(0 0 22px rgba(95,212,255,.35))}
+.brand img{content:url(icon-neon.svg)}
+.top{color:#fff}
+.catHead{color:var(--neon);opacity:.85;letter-spacing:2px;font-size:12px}
+label.f{color:#cfe0f0;font-weight:600;font-size:15px;letter-spacing:.3px}
+.err{color:#ff7a8a}
+
+/* cartes en verre */
+.card,.card.alt,.ov .card{background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.07));border:1px solid var(--edge);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 24px 60px rgba(0,0,0,.45);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);color:var(--txt)}
+.ov{background:rgba(3,7,14,.72);backdrop-filter:blur(6px)}
+
+/* boutons principaux : rouge brillant, reflet et halo */
+button{border-radius:16px}
+.big,a.big{position:relative;overflow:hidden;isolation:isolate;color:#fff;font-weight:700;letter-spacing:.2px;border:1px solid rgba(255,255,255,.28);
+  background:var(--gloss),linear-gradient(135deg,#ff5a70,var(--red2) 55%,var(--red3));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px rgba(0,0,0,.25),0 10px 30px rgba(255,61,87,.42),0 0 0 1px rgba(255,61,87,.35);
+  text-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s,box-shadow .2s,filter .2s}
+.big::after,a.big::after{content:"";position:absolute;inset:-40% auto -40% -60%;width:40%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);z-index:1;pointer-events:none;animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}85%,100%{left:130%}}
+.big:hover:not(:disabled),a.big:hover{filter:brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 14px 40px rgba(255,61,87,.55),0 0 0 1px rgba(255,61,87,.5)}
+.big:active:not(:disabled){transform:translateY(1px) scale(.99)}
+.big:disabled{filter:grayscale(.6);box-shadow:none}
+
+/* boutons secondaires : verre */
+.ghost,.ghost.dark,.pill,.seg button,.tabs button{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));color:#e6f0fa;border:1px solid var(--edge);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ghost:hover,.seg button:hover,.tabs button:hover{border-color:rgba(95,212,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 0 18px rgba(95,212,255,.25)}
+.th[aria-pressed=true],.lv[aria-pressed=true],.seg button[aria-pressed=true],.ghost.dark[aria-pressed=true],.tabs button[aria-pressed=true]{
+  background:linear-gradient(180deg,rgba(95,212,255,.22),rgba(47,143,220,.10));border:1px solid var(--neon);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 0 0 1px rgba(95,212,255,.35),0 0 26px rgba(95,212,255,.35)}
+button:focus-visible,input:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+
+/* champs */
+input,.gSel{background:rgba(3,8,16,.35);color:#fff;border:1px solid var(--edge2);border-radius:14px;box-shadow:inset 0 2px 8px rgba(0,0,0,.4)}
+input::placeholder{color:#9fb4c9}
+input:focus{border-color:var(--neon);box-shadow:inset 0 2px 8px rgba(0,0,0,.4),0 0 0 3px rgba(95,212,255,.2),0 0 22px rgba(95,212,255,.3)}
+input.code{letter-spacing:12px;color:var(--neon);text-shadow:0 0 14px rgba(95,212,255,.6)}
+.gSel option{background:var(--bg1)}
+
+/* pastilles numérotées de l'accueil */
+.how div{color:#dce8f4;font-weight:600}
+.how b{background:radial-gradient(circle at 35% 30%,#8fe3ff,var(--neon2) 60%,#163f6b);color:#fff;box-shadow:0 0 16px rgba(95,212,255,.55),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* choix des images et des niveaux */
+.th,.lv{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--edge);color:var(--txt);transition:transform .15s,border-color .2s,box-shadow .2s}
+.th:hover,.lv:hover{transform:translateY(-2px);border-color:rgba(95,212,255,.45)}
+.th svg,.lv svg,.qprev{box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.08)}
+.th b,.lv b{color:#fff}.th span,.lv span,.lv.txt span{color:var(--soft)}
+.th.soon{background:transparent;border:1px dashed var(--edge2)}
+
+/* code, QR et joueurs */
+.bigCode{color:#fff;text-shadow:0 0 24px rgba(95,212,255,.6),0 0 2px #fff}
+.joinCard img{box-shadow:0 0 0 6px rgba(255,255,255,.06),0 0 40px rgba(95,212,255,.25)}
+.url{color:var(--soft)}
+.chip{background:rgba(255,255,255,.08);border:1px solid var(--edge);color:#fff}
+.chip button{color:var(--soft)}
+.alsoPlay{border-top:1px solid var(--edge)}
+
+/* progression et résultats */
+.prow{border-top:1px solid var(--edge)}
+.prow .nm{color:#fff}.prow .st{color:var(--soft)}.prow.done .st{color:var(--neon)}
+.bar{background:rgba(255,255,255,.08);height:10px}
+.bar i{background:linear-gradient(90deg,var(--neon2),var(--neon));box-shadow:0 0 12px rgba(95,212,255,.7)}
+.banner{background:linear-gradient(90deg,rgba(255,61,87,.22),rgba(255,61,87,.08));border:1px solid rgba(255,61,87,.5);color:#ffd5db}
+.res li{color:#fff}.res li:nth-child(odd){background:rgba(255,255,255,.05)}
+.medal{background:rgba(255,255,255,.1);color:#fff}
+.m1{background:radial-gradient(circle at 35% 30%,#ff8a9a,var(--red2));box-shadow:0 0 16px rgba(255,61,87,.6)}
+.m2{background:radial-gradient(circle at 35% 30%,#8fe3ff,var(--neon2));box-shadow:0 0 16px rgba(95,212,255,.5)}
+.m3{background:radial-gradient(circle at 35% 30%,#c7d5e4,#5d7590)}
+.gain{color:var(--neon);text-shadow:0 0 30px rgba(95,212,255,.6)}
+.gain.zero{color:var(--soft);text-shadow:none}
+.opt,.qs button{background:rgba(255,255,255,.05);border:1px solid var(--edge2);color:#fff}
+.opt.good,.qs button.ok{border-color:var(--neon);background:rgba(95,212,255,.15);box-shadow:0 0 22px rgba(95,212,255,.35)}
+.opt.chosen,.qs button.ko{border-color:var(--red);background:rgba(255,61,87,.15)}
+.toast{background:rgba(10,20,36,.85);border:1px solid var(--edge2);backdrop-filter:blur(12px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.modelImg,.objImg,.scene svg{box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08)}
+
+/* écran de jeu du joueur */
+.pgame{background:var(--bg0)}
+.pgame::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(600px 400px at 100% 0,rgba(214,40,57,.18),transparent 60%),radial-gradient(600px 500px at 0 100%,rgba(47,143,220,.18),transparent 60%)}
+.pbar{position:relative;background:rgba(255,255,255,.04);border-bottom:1px solid var(--edge);backdrop-filter:blur(14px)}
+.pbar span:last-child{color:var(--neon);text-shadow:0 0 12px rgba(95,212,255,.6)}
+.pboardWrap{position:relative;background:transparent}
+.board{background:rgba(255,255,255,.04);box-shadow:0 0 0 1px rgba(95,212,255,.3),0 0 40px rgba(95,212,255,.15),0 20px 50px rgba(0,0,0,.5)}
+.board .sil{opacity:.3;filter:grayscale(.2) brightness(.9)}
+.board.jig .sil{opacity:.22}
+.cell{outline:1px dashed rgba(95,212,255,.28)}
+.board.jig .cell{outline-color:rgba(95,212,255,.1)}
+.tray,#imgArea .tray{position:relative;background:rgba(255,255,255,.025);border-top:1px solid var(--edge)}
+#imgArea .tray{border:1px dashed var(--edge2)}
+.pc{outline:1px solid rgba(255,255,255,.35);box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.pc.sel{outline:2px solid var(--neon);box-shadow:0 0 24px rgba(95,212,255,.7)}
+.pc.jig{filter:drop-shadow(0 6px 8px rgba(0,0,0,.6))}
+.pc.jig.sel{filter:drop-shadow(0 0 5px var(--neon)) drop-shadow(0 0 10px var(--neon))}
+.cell .pc{outline:0;box-shadow:none}
+.cell.no{animation:noN .35s}
+@keyframes noN{0%,100%{background:transparent}40%{background:rgba(255,61,87,.4)}}
+
+/* phrases, calcul, cuisine */
+.line,.quote,.carnet,.clue,.recipe,.cookbook,.eq,.qprev{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.025));border:1px solid var(--edge);color:#fff}
+.line,.quote blockquote,.carnet .q1,.clue b,.qprev{color:#fff}
+.quote figcaption,.carnet .q1 small,.author,.clue span{color:var(--soft)}
+.carnet .q1,.cookbook div{border-bottom:1px dotted var(--edge2)}
+.carnet .qph,.cookbook .ph{color:#4d6681;border-bottom:1px dotted var(--edge)}
+.slot{border-bottom-color:rgba(255,255,255,.3)}
+.slot.next{border-color:var(--neon);background:rgba(95,212,255,.12);box-shadow:0 6px 14px -8px rgba(95,212,255,.8)}
+.frag,.pad button,.calcTiles span,.recTiles span{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid var(--edge2);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 16px rgba(0,0,0,.35)}
+.frag:active,.pad button:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 2px 6px rgba(0,0,0,.35)}
+.frag.ctile,.calcTiles span,.cslot,.eq,.calcprev{color:var(--neon)}
+.frag.ctile.op,.calcTiles span.op,.cslot.op{color:#ff6b80}
+.cslot,.bslot{background:rgba(3,8,16,.45);border:2px dashed rgba(255,255,255,.22);color:#fff}
+.cslot{color:var(--neon)}
+.cslot.full,.bslot.full{border:1px solid var(--edge2);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.ceq{color:#fff}
+.line.ok .cslot,.line.ok .bslot{border-color:var(--neon);background:rgba(95,212,255,.15);box-shadow:0 0 16px rgba(95,212,255,.4)}
+.chalk,.chainBox{background:rgba(3,8,16,.6);border:1px solid var(--edge);box-shadow:inset 0 0 40px rgba(95,212,255,.08)}
+.recName,.recipe b,.recprev{color:#fff}
+.cookbook b{color:#ff8a9a}
+.cookbook span,.recprev small{color:var(--soft)}
+.frag.rtile,.recTiles span{color:#fff}
+.frag.rtile.cook,.recTiles span.cook{background:linear-gradient(180deg,rgba(95,212,255,.25),rgba(95,212,255,.08))}
+.frag.rtile.reg,.recTiles span.reg{background:linear-gradient(180deg,rgba(120,220,170,.25),rgba(120,220,170,.08))}
+.frag.rtile.milk,.recTiles span.milk{background:linear-gradient(180deg,rgba(255,214,120,.25),rgba(255,214,120,.08))}
+
+/* jeux solo */
+.pl{border-top:1px solid var(--edge)}.pl .nm,.pl .pt{color:#fff}.pl.me .nm{color:#ff8a9a}
+.style div{background:rgba(255,255,255,.05);border:1px solid var(--edge);color:#dce8f4}
+.style b{color:#fff}
+.objs figure{color:#dce8f4}
+.objs svg{box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.sdk{background:rgba(255,255,255,.25);border:1px solid rgba(95,212,255,.5);box-shadow:0 0 30px rgba(95,212,255,.18)}
+.cell2{background:#0d1a2c;color:var(--neon)}
+.cell2.given{background:#132339;color:#fff}
+.cell2.peer{background:#112640}.cell2.given.peer{background:#17304d}
+.cell2.same{background:#1b3a5c}
+.cell2.sel{background:#2f8fdc!important;color:#fff}
+.cell2.err{color:#ff5a70}
+.cell2.bR{box-shadow:3px 0 0 rgba(95,212,255,.5)}.cell2.bB{box-shadow:0 3px 0 rgba(95,212,255,.5)}.cell2.bR.bB{box-shadow:3px 0 0 rgba(95,212,255,.5),0 3px 0 rgba(95,212,255,.5),3px 3px 0 rgba(95,212,255,.5)}
+.notes i{color:#7f99b4}
+.tq{background:#03070e;border:1px solid rgba(95,212,255,.4);box-shadow:0 0 30px rgba(95,212,255,.18)}
+.gWin{background:linear-gradient(160deg,rgba(95,212,255,.18),rgba(95,212,255,.05));border:1px solid var(--neon);box-shadow:0 0 30px rgba(95,212,255,.25)}
+.gInfo{color:#fff}
+.domEmpty{color:var(--soft)}
+.domNext{border-color:rgba(95,212,255,.5);color:var(--neon)}
+.dom{filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+
+/* lisibilité renforcée */
+body{font-weight:500}
+.soft,.lead,.th span,.lv span,.url,.prow .st,.quote figcaption,.author{color:var(--soft);font-weight:500}
+.catHead{color:#8fe3ff;opacity:1}
+label.f{color:#fff}
+.th,.lv{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06))}
+.how div{color:#fff}
+.carnet .qph,.cookbook .ph{color:#8aa2ba}
+.notes i{color:#b3c6d9}
+
+/* bouton Quitter pendant le jeu */
+.pbar{align-items:center}
+.pbar b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barExit{min-height:38px;padding:0 14px;font-size:15px;font-weight:700;border-radius:12px;white-space:nowrap;flex:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.05));color:#fff;border:1px solid var(--edge2)}
+.barExit:hover{border-color:rgba(255,61,87,.7);box-shadow:0 0 14px rgba(255,61,87,.4)}
+.pExit{margin-top:14px}
+.barExit.pExit{margin-top:0}
+
+/* photos des plats */
+.recName{display:flex;align-items:center;justify-content:center;gap:12px}
+.recThumb{width:64px;height:64px;object-fit:cover;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.15);flex:none}
+.recPhoto{display:block;width:100%;max-height:240px;object-fit:cover;border-radius:14px;margin:0 0 12px;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+
+/* plateau de puzzle plus clair : le modèle se voit bien */
+.board{background:#eef4f9}
+.board .sil{opacity:.5;filter:saturate(.75)}
+.board.jig .sil{opacity:.42}
+.cell{outline:1px dashed rgba(19,41,61,.28)}
+.board.jig .cell{outline-color:rgba(19,41,61,.12)}
+
+/* bouton Quitter toujours visible pendant le jeu (animateur et solo) */
+.quitFab{position:fixed;top:14px;right:14px;z-index:60;min-height:44px;padding:0 18px;font-size:16px;font-weight:700;border-radius:14px;color:#fff;cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,61,87,.35),rgba(214,40,57,.2));border:1px solid rgba(255,61,87,.7);box-shadow:0 6px 20px rgba(0,0,0,.4),0 0 16px rgba(255,61,87,.35);backdrop-filter:blur(10px)}
+.quitFab:hover{filter:brightness(1.15)}
+#pl:has(#pPlay:not(.hidden)) .plFab{display:none}

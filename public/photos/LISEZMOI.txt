@@ -1,0 +1,41 @@
+Photos des niveaux 5 et 6 de Curling
+=====================================
+
+Déposez ici des photos CARRÉES (au moins 1000 x 1000 pixels), au format .jpg, avec exactement ces noms.
+Une photo absente ? Le jeu utilise automatiquement le rendu dessiné réaliste.
+
+La maison à la campagne
+  maison-1.jpg  →  La maison
+  maison-2.jpg  →  L'arbre
+  maison-3.jpg  →  Le soleil
+  maison-4.jpg  →  Le pot de fleurs
+  maison-5.jpg  →  Le chat
+
+Une journée à la plage
+  plage-1.jpg  →  Le parasol
+  plage-2.jpg  →  Le crabe
+  plage-3.jpg  →  Le bateau
+  plage-4.jpg  →  La glace
+  plage-5.jpg  →  Le seau
+
+La ferme
+  ferme-1.jpg  →  La grange
+  ferme-2.jpg  →  Le cochon
+  ferme-3.jpg  →  La vache
+  ferme-4.jpg  →  La poule
+  ferme-5.jpg  →  Le tracteur
+
+Les métiers d’art
+  metiers-1.jpg  →  Le forgeron
+  metiers-2.jpg  →  Le luthier
+  metiers-3.jpg  →  Le potier
+  metiers-4.jpg  →  Le boulanger
+  metiers-5.jpg  →  L’apiculteur
+
+Sculptures du monde
+  sculptures-1.jpg  →  Le Penseur de Rodin
+  sculptures-2.jpg  →  La statue de la Liberté
+  sculptures-3.jpg  →  La Vénus de Milo
+  sculptures-4.jpg  →  Le Sphinx de Gizeh
+  sculptures-5.jpg  →  Le moaï de l’île de Pâques
+

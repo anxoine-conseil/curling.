@@ -1,0 +1,19 @@
+{
+  "name": "curling",
+  "version": "1.0.0",
+  "description": "Jeu de puzzle multijoueur : chacun sur son téléphone, tout le monde reconstitue la même image.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "express": "^4.22.3",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.4"
+  }
+}

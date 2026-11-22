@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0a1424">
+<title>Curling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="icon" href="icon-neon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="description" content="Curling, le jeu qui fait glisser les méninges, de 5 à 99 ans">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="neon.css">
+</head>
+<body>
+
+<!-- ACCUEIL -->
+<section id="home" class="view app">
+  <div class="hero">
+    <img src="logo.svg" alt="" width="416" height="260">
+    <h1 class="word">Curling</h1>
+    <p class="tag">Le jeu qui fait glisser<br>les méninges, de 5&nbsp;à&nbsp;99&nbsp;ans</p>
+  </div>
+  <div class="homeGrid">
+    <div class="card">
+      <h2>Rejoindre une partie</h2>
+      <p class="soft">Tapez le code affiché sur l'écran de l'animateur, ou scannez son QR code.</p>
+      <form id="joinForm">
+        <label class="f" for="jCode">Code de la partie</label>
+        <input id="jCode" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCD" required>
+        <label class="f" for="jName">Votre prénom</label>
+        <input id="jName" maxlength="16" autocomplete="given-name" placeholder="Ex. : Jeannine" required>
+        <p class="err" id="jErr" role="alert"></p>
+        <button class="big" type="submit">Rejoindre</button>
+      </form>
+    </div>
+    <div class="card alt">
+      <h2>Je suis l'animateur</h2>
+      <p class="soft">Ouvrez cette page sur l'ordinateur ou la tablette branché à la télé. Vous choisissez les images et le niveau, les joueurs rejoignent avec leur téléphone.</p>
+      <button class="big" id="createBtn">Créer une partie</button>
+      <div class="how">
+        <div><b>1</b>Créez la partie</div>
+        <div><b>2</b>Chacun scanne le QR code</div>
+        <div><b>3</b>Le plus rapide gagne !</div>
+      </div>
+    </div>
+    <div class="card solo">
+      <div><h2>Jouer seul</h2><p class="soft" style="margin:0">Tous les thèmes, tranquillement ou contre des joueurs simulés, plus le sudoku, le taquin et les dominos.</p></div>
+      <a class="big" href="solo.html">Jouer seul</a>
+    </div>
+  </div>
+</section>
+
+<!-- ANIMATEUR -->
+<section id="host" class="view app hidden">
+  <header class="top"><h1 class="brand"><img src="icon.svg" alt="" width="44" height="44">Curling</h1><span class="pill" id="hRound"></span><span class="pill code" id="hCode"></span><button class="ghost" id="hSnd" aria-pressed="true">Son : oui</button></header>
+
+  <div id="hLobby" class="sub lobby">
+    <div class="card">
+      <h2>Les images</h2>
+      <div class="themes" id="hThemes"></div>
+      <h2 style="margin-top:22px">Le niveau, le même pour tout le monde</h2>
+      <div class="levels" id="hLevels"></div>
+    </div>
+    <div class="card joinCard">
+      <h2>Rejoignez la partie</h2>
+      <img id="hQr" alt="QR code pour rejoindre la partie" width="260" height="260">
+      <div class="bigCode" id="hBigCode"></div>
+      <p class="soft url" id="hUrl"></p>
+      <button class="ghost dark" id="hInvite">Inviter des joueurs à distance</button>
+      <h3><span id="hCount">0</span> joueur(s)</h3>
+      <div class="chips" id="hPlayers"></div>
+      <button class="big" id="hStart" disabled>Lancer la partie</button>
+      <div class="alsoPlay">
+        <p class="soft">Pas de télé, ou vous jouez à distance ? Jouez aussi depuis cet appareil :</p>
+        <div class="row center"><input id="hMyName" maxlength="16" placeholder="Votre prénom" autocomplete="given-name"><button class="ghost dark" id="hPlayToo">Je joue aussi</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="hPlay" class="sub play hidden">
+    <button class="quitFab" id="hAbortTop" type="button">✕ Arrêter la partie</button>
+    <div class="card model">
+      <h2 id="hObjName"></h2>
+      <div class="modelImg" id="hModel"></div>
+      <p class="soft" id="hModelCap">Le modèle à reconstituer</p>
+    </div>
+    <div class="card">
+      <div class="banner hidden" id="hBanner"></div>
+      <h2>Qui avance le plus vite ?</h2>
+      <div id="hProg"></div>
+      <button class="ghost dark" id="hStop">Terminer la manche maintenant</button>
+      <button class="ghost dark" id="hAbort">Arrêter et revenir aux réglages</button>
+    </div>
+  </div>
+
+  <div id="hEnd" class="sub hidden">
+    <div class="card center wide">
+      <h2 class="huge" id="hEndT"></h2>
+      <div class="endGrid">
+        <div><div id="hEndObj"></div><ul class="res" id="hEndRes"></ul></div>
+        <div class="scene" id="hEndScene"></div>
+      </div>
+      <button class="big" id="hNext"></button>
+    </div>
+  </div>
+
+  <div id="hFinal" class="sub hidden">
+    <div class="card center wide">
+      <h2 class="huge" id="hFinalT">Tous les objets sont réunis !</h2>
+      <div class="scene sceneBig" id="hFinalScene"></div>
+      <p class="q" id="hQ"></p>
+      <div class="opts" id="hOpts"></div>
+      <p class="soft"><b id="hAns">0</b> réponse(s) sur les téléphones</p>
+      <button class="big" id="hReveal">Voir la réponse et le classement</button>
+    </div>
+  </div>
+
+  <div id="hPodium" class="sub hidden">
+    <div class="card center wide">
+      <h2 class="huge">Le classement</h2>
+      <p class="q" id="hGood"></p>
+      <ul class="res" id="hRank"></ul>
+      <div class="row center">
+        <button class="big" id="hAgain">Rejouer</button>
+        <button class="ghost dark" id="hBack">Changer d'images ou de niveau</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOUEUR -->
+<section id="pl" class="view hidden">
+  <button class="quitFab pExit plFab" type="button">✕ Quitter</button>
+  <div id="pWait" class="sub app msg">
+    <div class="card center">
+      <img src="logo.svg" alt="" class="miniLogo" width="260" height="150">
+      <h2 class="huge" id="pHello"></h2>
+      <p class="lead" id="pWaitL"></p>
+      <div class="chips" id="pOthers"></div>
+      <div class="hostCtl hidden" id="pCtlWait">
+        <button class="big" id="pStart">Lancer la partie</button>
+        <button class="ghost dark" id="pInvite">Inviter des joueurs à distance</button>
+        <button class="ghost dark" id="pSettings">Changer les images ou le niveau</button>
+      </div>
+      <button class="ghost dark" id="pQuit">Quitter la partie</button>
+    </div>
+  </div>
+
+  <div id="pPlay" class="sub pgame hidden">
+    <div class="pbar"><button class="pExit barExit" type="button">✕ Quitter</button><b id="pObj"></b><span id="pCount"></span></div>
+    <div class="pboardWrap"><div class="board" id="pBoard"></div></div>
+    <div class="tray" id="pTray" aria-label="Pièces à placer"></div>
+    <div class="ptext" id="pText"><p class="soft" id="pHint">Touchez les morceaux dans le bon ordre.</p><div class="line" id="pLine"></div><div class="frags" id="pFrags"></div></div>
+  </div>
+
+  <div id="pDone" class="sub app msg hidden">
+    <div class="card center">
+      <h2 class="huge" id="pDoneT">Terminé !</h2>
+      <div id="pDoneObj"></div>
+      <p class="lead" id="pDoneP"></p>
+      <div id="pDoneProg" class="miniProg"></div>
+      <button class="ghost dark pExit" type="button">Quitter la partie</button>
+    </div>
+  </div>
+
+  <div id="pEnd" class="sub app msg hidden">
+    <div class="card center">
+      <p class="lead" id="pEndL"></p>
+      <div class="gain" id="pGain"></div>
+      <p class="lead">Total : <b id="pTotal"></b> · <span id="pRankNow"></span></p>
+      <ul class="res" id="pEndRes"></ul>
+      <p class="soft" id="pEndNote">L'organisateur va lancer la suite.</p>
+      <button class="big hidden" id="pNext"></button>
+      <button class="ghost dark pExit" type="button">Quitter la partie</button>
+    </div>
+  </div>
+
+  <div id="pFinal" class="sub app msg hidden">
+    <div class="card center">
+      <p class="lead">Question bonus</p>
+      <h2 class="q" id="pQ"></h2>
+      <div class="opts col" id="pOpts"></div>
+      <p class="lead hidden" id="pAnsDone">Réponse enregistrée !</p>
+      <p class="soft hidden" id="pAnsCount"></p>
+      <button class="big hidden" id="pReveal">Voir la réponse et le classement</button>
+      <button class="ghost dark pExit" type="button">Quitter la partie</button>
+    </div>
+  </div>
+
+  <div id="pPodium" class="sub app msg hidden">
+    <div class="card center">
+      <h2 class="huge" id="pPodT"></h2>
+      <p class="lead" id="pPodP"></p>
+      <ul class="res" id="pRank"></ul>
+      <p class="soft" id="pPodNote">Merci d'avoir joué ! L'organisateur peut relancer une partie.</p>
+      <div class="row center hidden" id="pCtlPod"><button class="big" id="pAgain">Rejouer</button><button class="ghost dark" id="pBack">Changer les images ou le niveau</button></div>
+      <button class="ghost dark pExit" type="button">Quitter la partie</button>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" aria-live="polite"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="themes.js"></script>
+<script src="dessins.js"></script>
+<script src="puzzle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
