@@ -246,3 +246,13 @@ label.f{color:#fff}
   background:linear-gradient(180deg,rgba(255,61,87,.35),rgba(214,40,57,.2));border:1px solid rgba(255,61,87,.7);box-shadow:0 6px 20px rgba(0,0,0,.4),0 0 16px rgba(255,61,87,.35);backdrop-filter:blur(10px)}
 .quitFab:hover{filter:brightness(1.15)}
 #pl:has(#pPlay:not(.hidden)) .plFab{display:none}
+
+/* Mettre Curling sur le téléphone */
+.instPanel p{margin:4px 0 8px;color:#fff}
+.instPanel .soft{color:var(--soft,#b9c6d8);margin-top:8px}
+.instSteps{margin:0;padding-left:24px;display:grid;gap:8px;font-size:17px;line-height:1.4;color:#fff}
+.instSteps li::marker{color:var(--neon);font-weight:800}
+.instPanel svg.inl{width:22px;height:22px;vertical-align:-5px;fill:none;stroke:#5fd4ff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.instPanel .okMsg{font-weight:700;color:#7dffb0}
+.mInstall.pulse{border-color:var(--neon);animation:instPulse 1.6s ease-in-out 3}
+@keyframes instPulse{50%{box-shadow:0 0 0 4px rgba(95,212,255,.35),0 0 28px rgba(95,212,255,.45)}}
