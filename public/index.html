@@ -23,34 +23,48 @@
     <h1 class="word">Curling</h1>
     <p class="tag">Le jeu qui fait glisser<br>les méninges, de 5&nbsp;à&nbsp;99&nbsp;ans</p>
   </div>
-  <div class="homeGrid">
-    <div class="card">
-      <h2>Rejoindre une partie</h2>
-      <p class="soft">Tapez le code affiché sur l'écran de l'animateur, ou scannez son QR code.</p>
+  <nav class="menu" aria-label="Tous les jeux">
+    <p class="mHead">À plusieurs</p>
+    <button class="mItem" id="joinToggle" type="button" aria-expanded="false" aria-controls="joinPanel">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="13" y="4" width="22" height="40" rx="5"/><path d="M21 9h6M19 38h10"/><path d="M18 22l5 5 8-9"/></svg></span>
+      <span class="mTxt"><b>Rejoindre une partie</b><small>J'ai un code ou un QR code</small></span><span class="mGo">›</span>
+    </button>
+    <div class="joinPanel hidden" id="joinPanel">
       <form id="joinForm">
-        <label class="f" for="jCode">Code de la partie</label>
-        <input id="jCode" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCD" required>
-        <label class="f" for="jName">Votre prénom</label>
-        <input id="jName" maxlength="16" autocomplete="given-name" placeholder="Ex. : Jeannine" required>
+        <div class="jRow">
+          <div><label class="f" for="jCode">Code</label><input id="jCode" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCD" required></div>
+          <div><label class="f" for="jName">Votre prénom</label><input id="jName" maxlength="16" autocomplete="given-name" placeholder="Ex. : Jeannine" required></div>
+        </div>
         <p class="err" id="jErr" role="alert"></p>
         <button class="big" type="submit">Rejoindre</button>
       </form>
     </div>
-    <div class="card alt">
-      <h2>Je suis l'animateur</h2>
-      <p class="soft">Ouvrez cette page sur l'ordinateur ou la tablette branché à la télé. Vous choisissez les images et le niveau, les joueurs rejoignent avec leur téléphone.</p>
-      <button class="big" id="createBtn">Créer une partie</button>
-      <div class="how">
-        <div><b>1</b>Créez la partie</div>
-        <div><b>2</b>Chacun scanne le QR code</div>
-        <div><b>3</b>Le plus rapide gagne !</div>
-      </div>
-    </div>
-    <div class="card solo">
-      <div><h2>Jouer seul</h2><p class="soft" style="margin:0">Tous les thèmes, tranquillement ou contre des joueurs simulés, plus le sudoku, le taquin et les dominos.</p></div>
-      <a class="big" href="solo.html">Jouer seul</a>
-    </div>
-  </div>
+    <button class="mItem" id="createBtn" type="button">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="26" rx="4"/><path d="M17 42h14M24 34v8"/><circle cx="24" cy="21" r="5"/></svg></span>
+      <span class="mTxt"><b>Créer une partie</b><small>Chacun joue sur son téléphone</small></span><span class="mGo">›</span>
+    </button>
+    <p class="mHead">Tout seul</p>
+    <a class="mItem" href="solo.html#home">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h12a4 4 0 1 1 8 0h12v12a4 4 0 1 0 0 8v12H28a4 4 0 1 0-8 0H8V28a4 4 0 1 1 0-8z"/></svg></span>
+      <span class="mTxt"><b>Puzzles et thèmes</b><small>Images, recettes, phrases, calcul…</small></span><span class="mGo">›</span>
+    </a>
+    <a class="mItem" href="solo.html#dom">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="3" width="20" height="42" rx="4"/><path d="M14 24h20"/><circle class="dot" cx="20" cy="10" r="2.2"/><circle class="dot" cx="28" cy="17" r="2.2"/><circle class="dot" cx="20" cy="31" r="2.2"/><circle class="dot" cx="28" cy="31" r="2.2"/><circle class="dot" cx="20" cy="38" r="2.2"/><circle class="dot" cx="28" cy="38" r="2.2"/></svg></span>
+      <span class="mTxt"><b>Dominos</b><small>De 3 à 20 dominos</small></span><span class="mGo">›</span>
+    </a>
+    <a class="mItem" href="solo.html#sdk">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="4"/><path d="M17.7 5v38M30.3 5v38M5 17.7h38M5 30.3h38"/><text x="11.3" y="15.5">3</text><text x="36.6" y="28">1</text><text x="24" y="40.6">2</text></svg></span>
+      <span class="mTxt"><b>Sudoku</b><small>4×4, 6×6 ou 9×9</small></span><span class="mGo">›</span>
+    </a>
+    <a class="mItem" href="solo.html#tq">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="11" height="11" rx="2"/><rect x="18.5" y="5" width="11" height="11" rx="2"/><rect x="32" y="5" width="11" height="11" rx="2"/><rect x="5" y="18.5" width="11" height="11" rx="2"/><rect x="18.5" y="18.5" width="11" height="11" rx="2"/><rect x="5" y="32" width="11" height="11" rx="2"/><rect x="18.5" y="32" width="11" height="11" rx="2"/><rect x="32" y="32" width="11" height="11" rx="2"/><path class="arrow" d="M37.5 21v8m-3-3 3 3 3-3"/></svg></span>
+      <span class="mTxt"><b>Taquin</b><small>Faites glisser les cases</small></span><span class="mGo">›</span>
+    </a>
+    <a class="mItem mSmall" href="solo.html#cat">
+      <span class="mIco"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="16" cy="19" r="4"/><path d="M5 34l12-10 9 7 6-5 11 9"/></svg></span>
+      <span class="mTxt"><b>Toutes les images du jeu</b></span><span class="mGo">›</span>
+    </a>
+  </nav>
 </section>
 
 <!-- ANIMATEUR -->
@@ -81,7 +95,6 @@
   </div>
 
   <div id="hPlay" class="sub play hidden">
-    <button class="quitFab" id="hAbortTop" type="button">✕ Arrêter la partie</button>
     <div class="card model">
       <h2 id="hObjName"></h2>
       <div class="modelImg" id="hModel"></div>
@@ -133,7 +146,6 @@
 
 <!-- JOUEUR -->
 <section id="pl" class="view hidden">
-  <button class="quitFab pExit plFab" type="button">✕ Quitter</button>
   <div id="pWait" class="sub app msg">
     <div class="card center">
       <img src="logo.svg" alt="" class="miniLogo" width="260" height="150">
@@ -208,5 +220,17 @@
 <script src="dessins.js"></script>
 <script src="puzzle.js"></script>
 <script src="app.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('joinToggle'), panel = document.getElementById('joinPanel');
+  function open(on) {
+    panel.classList.toggle('hidden', !on);
+    btn.setAttribute('aria-expanded', on);
+    if (on) { var c = document.getElementById('jCode'); (c.value ? document.getElementById('jName') : c).focus({ preventScroll: true }); }
+  }
+  btn.addEventListener('click', function () { open(panel.classList.contains('hidden')); });
+  if (new URLSearchParams(location.search).get('code')) open(true);
+})();
+</script>
 </body>
 </html>

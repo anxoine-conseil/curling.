@@ -4,7 +4,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const LEVELS = PAP.LEVELS;
 const { TEXTS, TEXT_LEVELS } = PAP;
 const THEMES = PAP.THEMES;
-Puzzle.preloadPhotos(THEMES, () => renderHome());
+if (location.protocol !== 'file:' && !/claude|artifact/.test(location.hostname)) Puzzle.preloadPhotos(THEMES);
 const seenTexts = new Set();
 const S = { theme: 'maison', level: 4, speed: 'calm', round: 0, players: [], snd: true };
 let ac = null, tick = null, puzzle = null, t0 = 0, finished = false, txt = null;
@@ -40,7 +40,7 @@ function show(v) {
 }
 const snd = { place: () => sPlace(), no: () => sNo(), win: () => sWin(), toast: t => toast(t) };
 const mounted = {};
-const IMAGES = Object.values(THEMES).filter(t => t.objects).flatMap(t => t.objects.map(o => ({ label: `${o.name} (${t.name})`, get svg() { return Puzzle.art(o, 'real'); } })));
+const IMAGES = Object.values(THEMES).filter(t => t.objects).flatMap(t => t.objects.map(o => ({ label: `${o.name} (${t.name})`, svg: o.bg + o.fg })));
 function mountGame(v) {
   if (mounted[v]) return;
   if (v === 'sdk') mounted.sdk = Games.mountSudoku($('sdkBox'), snd);
@@ -58,7 +58,7 @@ function renderHome() {
   $('themes').innerHTML = PAP.CATEGORIES.map(c => `<div class="catHead">${esc(c.name)}</div>` + Object.entries(THEMES).filter(([, t]) => t.cat === c.id).map(themeBtn).join('') + (c.soon ? `<div class="th soon"><b>${esc(c.name)}</b><span>${esc(c.soon)}</span></div>` : '')).join('');
   $('levels').innerHTML = Object.entries(LEVELS).map(([k, l]) => th.kind
     ? `<button class="lv txt" data-l="${k}" aria-pressed="${+k === S.level}"><b>${l.name}</b><span>${(isCalc(th) ? PAP.CALC_LEVELS : isRec(th) ? PAP.recLevels(th.bank) : TEXT_LEVELS)[k]}</span></button>`
-    : `<button class="lv" data-l="${k}" aria-pressed="${+k === S.level}">${Puzzle.gridPreview(th.objects[0], l)}<b>${l.name}</b><span>${th.objects[0].photoOk ? l.desc.split(',')[0] : l.desc}</span></button>`).join('');
+    : `<button class="lv" data-l="${k}" aria-pressed="${+k === S.level}">${Puzzle.gridPreview(th.objects[0], l)}<b>${l.name}</b><span>${l.desc}</span></button>`).join('');
 }
 $('themes').addEventListener('click', e => { const b = e.target.closest('.th'); if (b) { S.theme = b.dataset.t; renderHome(); } });
 $('levels').addEventListener('click', e => { const b = e.target.closest('.lv'); if (b) { S.level = +b.dataset.l; renderHome(); } });
@@ -71,7 +71,6 @@ $('startBtn').addEventListener('click', () => {
   S.seeds = []; S.round = 0; show('game'); startRound();
 });
 $('quitBtn').addEventListener('click', () => { stop(); show('home'); });
-$('quitTop').addEventListener('click', () => { stop(); show('home'); });
 function stop() { clearInterval(tick); puzzle?.destroy(); puzzle = null; $('ov').classList.add('hidden'); }
 
 // ---------- manche ----------
@@ -171,7 +170,7 @@ $('qs').addEventListener('click', e => {
 $('againBtn').addEventListener('click', () => show('home'));
 
 // ---------- catalogue ----------
-$('styleDemo').innerHTML = [[1, 'Niveau 1 : 4 pièces'], [3, 'Niveau 3 : 16 pièces'], [5, 'Niveau 5 : 25 pièces']].map(([k, l]) => `<figure>${Puzzle.gridPreview(THEMES.maison.objects[0], LEVELS[k])}${l}</figure>`).join('');
+$('styleDemo').innerHTML = [['bold', 'Niveaux 1 et 2 : dessin simple'], ['bd', 'Niveaux 3 et 4 : dessin détaillé'], ['real', 'Niveaux 5 et 6 : photo']].map(([st, l]) => `<figure>${Puzzle.full(THEMES.maison.objects[0], st)}${l}</figure>`).join('');
 const groups = [[1, 'Phrases courtes (niveaux 1 et 2)'], [2, 'Phrases moyennes (niveaux 3 et 4)'], [3, 'Phrases longues (niveaux 5 et 6)']];
 $('catList').innerHTML = PAP.CATEGORIES.filter(c => !c.soon).flatMap(c => Object.values(THEMES).filter(t => t.cat === c.id)).map(th => isRec(th)
   ? `<div class="card catTheme"><h2>${esc(th.name)}</h2><p class="soft" style="margin:0">${PAP.BANKS[th.bank].length} ${th.bank === 'fromages' ? 'fromages' : 'recettes'} pour commencer. Chaque partie en tire 5, sans reprendre les précédents. Les intrus sont drôles aux premiers niveaux, puis de vrais pièges aux niveaux plus difficiles.</p><div class="quotes">${PAP.BANKS[th.bank].map(r => `<div>${Puzzle.recipeCard({ name: r.name, ok: r.ok })}<p class="soft" style="margin:0 6px"><b>Intrus :</b> ${esc(r.easy.join(', '))}. <b>Pièges :</b> ${esc(r.hard.join(', '))}.</p></div>`).join('')}</div></div>`
@@ -182,4 +181,9 @@ $('catList').innerHTML = PAP.CATEGORIES.filter(c => !c.soon).flatMap(c => Object
   : `<div class="card catTheme"><h2>${esc(th.name)}</h2><p class="soft" style="margin:0">${esc(th.desc)}</p><div class="objs">${th.objects.map(o => `<figure>${Puzzle.full(o)}${esc(o.name)}</figure>`).join('')}</div><div class="catFoot"><div>${Puzzle.scene(th, 5)}</div><div><h3 style="margin-top:0">L'image finale</h3><p class="soft" style="margin:0">Après les 5 objets, ils se rassemblent dans cette scène.</p><p style="margin:8px 0 0"><b>Question bonus :</b> ${esc(th.quiz.q)} <span class="soft">Réponse : ${esc(th.quiz.options[th.quiz.answer])}</span></p></div></div></div>`).join('');
 
 renderHome();
+
+// ouvrir directement un jeu depuis l'accueil (solo.html#dom, #sdk, #tq, #cat)
+const startView = location.hash.slice(1);
+if (['sdk', 'tq', 'dom', 'cat'].includes(startView)) show(startView);
+window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (['home', 'sdk', 'tq', 'dom', 'cat'].includes(v)) { stop(); show(v); } });
 }
