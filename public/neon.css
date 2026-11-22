@@ -170,7 +170,7 @@ input.code{letter-spacing:12px;color:var(--neon);text-shadow:0 0 14px rgba(95,21
 .gInfo{color:#fff}
 .domEmpty{color:var(--soft)}
 .domNext{border-color:rgba(95,212,255,.5);color:var(--neon)}
-.dom{box-shadow:0 8px 18px rgba(0,0,0,.5)}
+.dom{filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
 
 /* lisibilité renforcée */
 body{font-weight:500}
@@ -240,3 +240,9 @@ label.f{color:#fff}
 .joinPanel label.f{margin:0 0 6px}
 .joinPanel input{min-height:54px;font-size:19px}
 .joinPanel input.code{font-size:26px;letter-spacing:6px;padding:0 10px;max-width:none}
+
+/* bouton Quitter toujours visible pendant le jeu (animateur et solo) */
+.quitFab{position:fixed;top:14px;right:14px;z-index:60;min-height:44px;padding:0 18px;font-size:16px;font-weight:700;border-radius:14px;color:#fff;cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,61,87,.35),rgba(214,40,57,.2));border:1px solid rgba(255,61,87,.7);box-shadow:0 6px 20px rgba(0,0,0,.4),0 0 16px rgba(255,61,87,.35);backdrop-filter:blur(10px)}
+.quitFab:hover{filter:brightness(1.15)}
+#pl:has(#pPlay:not(.hidden)) .plFab{display:none}
