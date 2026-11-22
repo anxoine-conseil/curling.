@@ -30,7 +30,7 @@
   let artId = 0;
   function art(o, style = 'line') {
     // une vraie photo, si on en ajoute une un jour (champ « photo » de l'objet), remplace le rendu réaliste
-    if (o.photo && o.photoOk) return `<image href="${o.photo}" width="400" height="400" preserveAspectRatio="xMidYMid slice"/>`;
+    if (o.photo && o.photoOk !== false) return `<image href="${o.photo}" width="400" height="400" preserveAspectRatio="xMidYMid slice"/>`;
     // style BD franco-belge (niveaux 3 et 4) : dessin détaillé propre à l'objet, sinon traits fins
     if ((style === 'bold' || style === 'line') && o.aff) return o.aff;
     if ((style === 'bd' || style === 'real') && o.lig) return o.lig;
@@ -264,7 +264,7 @@
   function preloadPhotos(themes, done) {
     const list = Object.values(themes).flatMap(t => t.objects || []).filter(o => o.photo);
     let left = list.length; if (!left) { done?.(); return; }
-    list.forEach(o => { const im = new Image(); im.onload = () => { o.photoOk = true; if (!--left) done?.(); }; im.onerror = () => { if (!--left) done?.(); }; im.src = o.photo; });
+    list.forEach(o => { const im = new Image(); im.onload = () => { o.photoOk = true; if (!--left) done?.(); }; im.onerror = () => { o.photoOk = false; if (!--left) done?.(); }; im.src = o.photo; });
   }
   root.Puzzle = { preloadPhotos, mount, scene, full, art, gridPreview, mountText, quoteHTML, carnet, textPreview, mountCalc, eqHTML, calcBoard, calcPreview, tilesHTML, mountRecipe, recipeCard, cookbook, recipePreview, recipeTilesHTML };
 })(this);

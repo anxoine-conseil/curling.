@@ -58,7 +58,7 @@ function renderHome() {
   $('themes').innerHTML = PAP.CATEGORIES.map(c => `<div class="catHead">${esc(c.name)}</div>` + Object.entries(THEMES).filter(([, t]) => t.cat === c.id).map(themeBtn).join('') + (c.soon ? `<div class="th soon"><b>${esc(c.name)}</b><span>${esc(c.soon)}</span></div>` : '')).join('');
   $('levels').innerHTML = Object.entries(LEVELS).map(([k, l]) => th.kind
     ? `<button class="lv txt" data-l="${k}" aria-pressed="${+k === S.level}"><b>${l.name}</b><span>${(isCalc(th) ? PAP.CALC_LEVELS : isRec(th) ? PAP.recLevels(th.bank) : TEXT_LEVELS)[k]}</span></button>`
-    : `<button class="lv" data-l="${k}" aria-pressed="${+k === S.level}">${Puzzle.gridPreview(th.objects[0], l)}<b>${l.name}</b><span>${th.objects[0].photoOk ? l.desc.split(',')[0] : l.desc}</span></button>`).join('');
+    : `<button class="lv" data-l="${k}" aria-pressed="${+k === S.level}">${Puzzle.gridPreview(th.objects[0], l)}<b>${l.name}</b><span>${th.objects[0].photo ? l.desc.split(',')[0] : l.desc}</span></button>`).join('');
 }
 $('themes').addEventListener('click', e => { const b = e.target.closest('.th'); if (b) { S.theme = b.dataset.t; renderHome(); } });
 $('levels').addEventListener('click', e => { const b = e.target.closest('.lv'); if (b) { S.level = +b.dataset.l; renderHome(); } });

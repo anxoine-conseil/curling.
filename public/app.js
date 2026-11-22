@@ -168,7 +168,7 @@
       $('hThemes').innerHTML = CATEGORIES.map(c => `<div class="catHead">${esc(c.name)}</div>` + Object.entries(THEMES).filter(([, t]) => t.cat === c.id).map(themeBtn).join('') + (c.soon ? `<div class="th soon"><b>${esc(c.name)}</b><span>${esc(c.soon)}</span></div>` : '')).join('');
       $('hLevels').innerHTML = Object.entries(LEVELS).map(([k, l]) => th.kind
         ? `<button class="lv txt" data-l="${k}" aria-pressed="${+k === S.level}"><b>${l.name}</b><span>${(th.kind === 'recipe' ? recLevels(th.bank) : ({ calc: CALC_LEVELS, text: TEXT_LEVELS })[th.kind])[k]}</span></button>`
-        : `<button class="lv" data-l="${k}" aria-pressed="${+k === S.level}">${Puzzle.gridPreview(th.objects[0], l)}<b>${l.name}</b><span>${th.objects[0].photoOk ? l.desc.split(',')[0] : l.desc}</span></button>`).join('');
+        : `<button class="lv" data-l="${k}" aria-pressed="${+k === S.level}">${Puzzle.gridPreview(th.objects[0], l)}<b>${l.name}</b><span>${th.objects[0].photo ? l.desc.split(',')[0] : l.desc}</span></button>`).join('');
       $('hCount').textContent = S.players.length;
       $('hPlayers').innerHTML = S.players.map(p => `<span class="chip${p.connected ? '' : ' off'}">${esc(p.name)}<button data-pid="${esc(p.pid)}" aria-label="Retirer ${esc(p.name)}">×</button></span>`).join('') || '<span class="soft">En attente des joueurs…</span>';
       $('hStart').disabled = !online.length;
